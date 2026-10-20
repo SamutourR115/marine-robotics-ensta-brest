@@ -76,18 +76,18 @@ By the end of the course, I aim to be able to:
 
 | # | Module | Instructor | Folder |
 |---|---|---|---|
-| 1 | Introduction to Mobile Marine Robotics | Luc Jaulin | [`01-monday/01-intro-marine-robotics`](01-monday/01-intro-marine-robotics) |
-| 2 | Autonomous Boats | Luc Jaulin | [`01-monday/02-autonomous-boats`](01-monday/02-autonomous-boats) |
-| 3 | Heading Control of the Virtual DD-Boat | Antoine Morvan | [`01-monday/03-ddboat-heading-control`](01-monday/03-ddboat-heading-control) |
-| 4 | Interval Analysis for Localization | Luc Jaulin | [`02-tuesday/01-interval-analysis`](02-tuesday/01-interval-analysis) |
-| 5 | Reachability | Maël Godard | [`02-tuesday/02-reachability`](02-tuesday/02-reachability) |
-| 6 | Robot Showcase | AICE | [`02-tuesday/03-aice-robots`](02-tuesday/03-aice-robots) |
-| 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | [`03-wednesday/01-rl-part1`](03-wednesday/01-rl-part1) |
-| 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | [`03-wednesday/02-rl-part2`](03-wednesday/02-rl-part2) |
-| 9 | Digital Twins: Fundamentals | Antoine Morvan | [`04-thursday/01-digital-twins-basic`](04-thursday/01-digital-twins-basic) |
-| 10 | Oceanic Robotics | Jean-Philippe Brunet | [`04-thursday/02-oceanic-robotics`](04-thursday/02-oceanic-robotics) |
-| 11 | Digital Twins: Practice | Antoine Morvan | [`04-thursday/03-digital-twins-practice`](04-thursday/03-digital-twins-practice) |
-| 12 | **The Race**: Final Challenge | Luc Jaulin | [`05-friday/the-race`](05-friday/the-race) |
+| 1 | Introduction to Mobile Marine Robotics | Luc Jaulin | n/a |
+| 2 | Autonomous Boats | Luc Jaulin | [`Day1`](Day1) |
+| 3 | Heading Control of the Virtual DD-Boat | Antoine Morvan | [`Day1`](Day1) |
+| 4 | Interval Analysis for Localization | Luc Jaulin | [`Day2`](Day2) |
+| 5 | Reachability | Maël Godard | Coming soon |
+| 6 | Robot Showcase | AICE | Coming soon |
+| 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | Coming soon |
+| 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | Coming soon |
+| 9 | Digital Twins: Fundamentals | Antoine Morvan | Coming soon |
+| 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
+| 11 | Digital Twins: Practice | Antoine Morvan | Coming soon |
+| 12 | **The Race**: Final Challenge | Luc Jaulin | Coming soon |
 
 <details>
 <summary><b>Key questions addressed by each module</b></summary>
@@ -122,58 +122,24 @@ By the end of the course, I aim to be able to:
 
 ---
 
-## Weekly Schedule
-
-| Day | Time | Session | Instructor |
-|---|---|---|---|
-| **Mon** | 11:30–12:15 | Introduction to Mobile Marine Robotics | Luc Jaulin |
-| | 14:30–16:00 | Autonomous Boats | Luc Jaulin |
-| | 16:00–17:00 | Heading Control of the Virtual DD-Boat | Antoine Morvan |
-| **Tue** | 10:00–12:00 | Interval Analysis for Localization | Luc Jaulin |
-| | 14:00–15:30 | Reachability | Maël Godard |
-| | 16:00–16:30 | Robot Showcase | AICE |
-| **Wed** | 09:00–10:00 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier |
-| | 14:00–16:00 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier |
-| **Thu** | 09:00–11:00 | Digital Twins: Fundamentals | Antoine Morvan |
-| | 11:00–12:00 | Oceanic Robotics | Jean-Philippe Brunet |
-| | 13:00–15:00 | Digital Twins: Practice | Antoine Morvan |
-| **Fri** | 09:00–12:00 | The Race: Final Challenge | Luc Jaulin |
-
----
-
 ## Repository Structure
 
 ```
 .
 ├── README.md
-├── requirements.txt
-├── 01-monday/
-│   ├── 01-intro-marine-robotics/
-│   ├── 02-autonomous-boats/
-│   └── 03-ddboat-heading-control/
-├── 02-tuesday/
-│   ├── 01-interval-analysis/
-│   ├── 02-reachability/
-│   └── 03-aice-robots/
-├── 03-wednesday/
-│   ├── 01-rl-part1/
-│   └── 02-rl-part2/
-├── 04-thursday/
-│   ├── 01-digital-twins-basic/
-│   ├── 02-oceanic-robotics/
-│   └── 03-digital-twins-practice/
-├── 05-friday/
-│   └── the-race/
-└── assets/                 # figures, photos and videos
+├── Day1/                               # Monday: autonomous boats & DD-Boat heading control
+│   ├── ddboatlib.py                    # plotting helpers (init_figure, draw_ddboat, sawtooth…)
+│   ├── simulator.py                    # DD-Boat model + heading controller, waypoint following
+│   ├── sim2.py                         # variant of the simulator
+│   └── client_pour_virtual_regatta.py  # UDP client driving the boat in the Unity virtual regatta
+└── Day2/                               # Tuesday: interval analysis for localization
+    ├── README.md                       # detailed write-up of the exercise
+    ├── myinterval.py                   # minimal interval arithmetic
+    ├── mycontractor.py                 # elementary contractors
+    └── loc_start.py                    # localization of a group of 8 robots
 ```
 
-Each module folder follows the same layout:
-
-| Path | Content |
-|---|---|
-| `README.md` | Summary of the module, key concepts and takeaways |
-| `src/` | Source code |
-| `results/` | Plots, logs and videos |
+Folders for the following days will be added as the week goes on.
 
 ---
 
@@ -183,21 +149,28 @@ Each module folder follows the same layout:
 
 - Python 3.x
 - NumPy, Matplotlib
-- [Codac](https://codac.io) (interval analysis and constraint programming)
+- [`roblib`](https://pypi.org/project/roblib/) (course plotting helpers, used in Day 2)
 
 ### Installation
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
+git clone https://github.com/SamutourR115/marine-robotics-ensta-brest.git
+cd marine-robotics-ensta-brest
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install numpy matplotlib roblib
 ```
 
 ### Usage
 
-Each module can be run independently. See the `README.md` inside each folder for module-specific instructions.
+Scripts import their neighbours by name, so run them from inside their folder:
+
+```bash
+cd Day1 && python simulator.py     # DD-Boat waypoint following
+cd Day2 && python loc_start.py     # interval localization
+```
+
+`client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). See [`Day2/README.md`](Day2/README.md) for a full explanation of the Day 2 exercise.
 
 ---
 
@@ -206,9 +179,9 @@ Each module can be run independently. See the `README.md` inside each folder for
 | Module | Notes | Code | Status |
 |---|:---:|:---:|:---:|
 | Introduction to Mobile Marine Robotics | ☐ | n/a | Pending |
-| Autonomous Boats | ☐ | ☐ | Pending |
-| Heading Control of the Virtual DD-Boat | ☐ | ☐ | Pending |
-| Interval Analysis for Localization | ☐ | ☐ | Pending |
+| Autonomous Boats | ☐ | ☑ | In progress |
+| Heading Control of the Virtual DD-Boat | ☐ | ☑ | In progress |
+| Interval Analysis for Localization | ☑ | ☑ | Done |
 | Reachability | ☐ | ☐ | Pending |
 | Robot Showcase (AICE) | ☐ | n/a | Pending |
 | Reinforcement Learning (Part 1) | ☐ | ☐ | Pending |
@@ -244,4 +217,4 @@ This repository contains my personal notes and implementations. Course materials
 ## Author
 
 **Sam**, BSc student in Computer Science (Intelligent Systems), University of Liège
-[GitHub](https://github.com/<username>) · [LinkedIn](https://www.linkedin.com/in/<profile>)
+[GitHub](https://github.com/SamutourR115) · [LinkedIn](https://www.linkedin.com/in/samuel-mastroscianni-395b6126b)
