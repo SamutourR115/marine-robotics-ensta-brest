@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/ImgBest26.png" alt="Autonomous surface vessels and underwater robots exploring a sunken city" width="100%">
+
 # ROBOTson Crusoe: Let's Explore the Lost City
 
 **BEST Fall Course 2026 · Marine Robotics · ENSTA Brest**
@@ -20,7 +22,6 @@
 - [About](#about)
 - [Course Information](#course-information)
 - [Curriculum](#curriculum)
-- [Weekly Schedule](#weekly-schedule)
 - [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
 - [Progress](#progress)
@@ -127,6 +128,8 @@ By the end of the course, I aim to be able to:
 ```
 .
 ├── README.md
+├── assets/
+│   └── banner.png                      # README banner
 ├── Day1/                               # Monday: autonomous boats & DD-Boat heading control
 │   ├── ddboatlib.py                    # plotting helpers (init_figure, draw_ddboat, sawtooth…)
 │   ├── simulator.py                    # DD-Boat model + heading controller, waypoint following
