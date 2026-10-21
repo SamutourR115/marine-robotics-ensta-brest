@@ -82,10 +82,10 @@ By the end of the course, I aim to be able to:
 | 2 | Autonomous Boats | Luc Jaulin | [`Day1`](Day1) |
 | 3 | Heading Control of the Virtual DD-Boat | Antoine Morvan | [`Day1`](Day1) |
 | 4 | Interval Analysis for Localization | Luc Jaulin | [`Day2`](Day2) |
-| 5 | Reachability | Maël Godard | Coming soon |
-| 6 | Robot Showcase | AICE | Coming soon |
-| 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | Coming soon |
-| 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | Coming soon |
+| 5 | Reachability | Maël Godard | [`Day2`](Day2) |
+| 6 | Robot Showcase | AICE | [`Day2`](Day2) |
+| 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | [`Day3`](Day3) |
+| 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | [`Day3`](Day3) |
 | 9 | Digital Twins: Fundamentals | Antoine Morvan | Coming soon |
 | 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
 | 11 | Digital Twins: Practice | Antoine Morvan | Coming soon |
