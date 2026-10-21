@@ -22,6 +22,7 @@
 - [About](#about)
 - [Course Information](#course-information)
 - [Curriculum](#curriculum)
+- [Team Project: DD-Boat 11](#team-project-dd-boat-11)
 - [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
 - [Progress](#progress)
@@ -88,7 +89,7 @@ By the end of the course, I aim to be able to:
 | 9 | Digital Twins: Fundamentals | Antoine Morvan | Coming soon |
 | 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
 | 11 | Digital Twins: Practice | Antoine Morvan | Coming soon |
-| 12 | **The Race**: Final Challenge | Luc Jaulin | Coming soon |
+| 12 | **The Race**: Final Challenge | Luc Jaulin | [`Day3/NavySeals`](Day3/NavySeals) |
 
 <details>
 <summary><b>Key questions addressed by each module</b></summary>
@@ -123,23 +124,55 @@ By the end of the course, I aim to be able to:
 
 ---
 
+## Team Project: DD-Boat 11
+
+On **Day 3 (Wednesday)** the teams were formed and the project began. I joined team **NavySeals**, in charge of **DD-Boat 11**: a differential-drive surface vessel (two brushless thrusters, no rudder) running on a Raspberry Pi 3 with an Arduino MEGA, a 9-DOF IMU and a GPS receiver. The goal is to make it navigate autonomously on Lake Guerlédan and compete in the **Friday regatta** (5 minutes, +1 point per gate crossed in the right direction, −1 otherwise).
+
+**Done on Day 3**
+
+- Network and SSH setup on the boat, hardware smoke test (IMU, GPS, Arduino)
+- Compass calibration (hard- and soft-iron correction, rewritten in pure NumPy since `scipy` is not on the boat)
+- Motor test and GPS georeferencing (UTM zone 30N, KML export for Google Earth)
+- All checks of the `best_ddboat` handout passed
+- First controllers: heading hold, GPS waypoints, return-to-home ("no-kayaking"), keyboard teleoperation and the regatta state machine
+
+**Next steps**: on-water trials of heading hold and return-to-home, then the line follower between buoys.
+
+The boat runs **Python 3.5.3**, so no f-strings. Full details: [`PROJECT_RECORD.md`](Day3/NavySeals/PROJECT_RECORD.md) (runbook), [`REGATTA_MISSION_PLAN.md`](Day3/NavySeals/REGATTA_MISSION_PLAN.md) (competition strategy), [`COMPASS_CALIBRATION_REPORT.md`](Day3/NavySeals/COMPASS_CALIBRATION_REPORT.md).
+
+---
+
 ## Repository Structure
 
 ```
 .
 ├── README.md
 ├── assets/
-│   └── banner.png                      # README banner
+│   └── ImgBest26.png                   # README banner
 ├── Day1/                               # Monday: autonomous boats & DD-Boat heading control
 │   ├── ddboatlib.py                    # plotting helpers (init_figure, draw_ddboat, sawtooth…)
 │   ├── simulator.py                    # DD-Boat model + heading controller, waypoint following
 │   ├── sim2.py                         # variant of the simulator
 │   └── client_pour_virtual_regatta.py  # UDP client driving the boat in the Unity virtual regatta
-└── Day2/                               # Tuesday: interval analysis for localization
-    ├── README.md                       # detailed write-up of the exercise
-    ├── myinterval.py                   # minimal interval arithmetic
-    ├── mycontractor.py                 # elementary contractors
-    └── loc_start.py                    # localization of a group of 8 robots
+├── Day2/                               # Tuesday: interval analysis for localization
+│   ├── README.md                       # detailed write-up of the exercise
+│   ├── myinterval.py                   # minimal interval arithmetic
+│   ├── mycontractor.py                 # elementary contractors
+│   └── loc_start.py                    # localization of a group of 8 robots
+└── Day3/NavySeals/                     # Wednesday: team project on the real DD-Boat 11
+    ├── PROJECT_RECORD.md               # full runbook and log of the project
+    ├── REGATTA_MISSION_PLAN.md         # strategy for the Friday regatta
+    ├── stop.py                         # emergency stop (both thrusters to 0)
+    ├── boat11_smoke_test.py            # IMU / GPS / Arduino check
+    ├── motor_test.py                   # 2 s in-place turn
+    ├── calib.py                        # compass calibration + live heading
+    ├── gps.py                          # NMEA parsing, UTM projection, KML log
+    ├── battery*.py                     # battery voltage and state of charge
+    ├── heading_hold.py                 # sawtooth proportional heading control
+    ├── waypoint_mission.py             # GPS waypoint navigation
+    ├── control.py                      # boomerang and GPS return-to-home
+    ├── rc_teleop.py                    # keyboard teleoperation over SSH
+    └── regatta_loop.py                 # gate A ↔ B regatta controller
 ```
 
 Folders for the following days will be added as the week goes on.
@@ -173,6 +206,8 @@ cd Day1 && python simulator.py     # DD-Boat waypoint following
 cd Day2 && python loc_start.py     # interval localization
 ```
 
+The `Day3/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they need the course drivers (`arduino_driver_v2`, `gps_driver_v2`, `imu9_driver_v2`). See [`PROJECT_RECORD.md`](Day3/NavySeals/PROJECT_RECORD.md) for the commands.
+
 `client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). See [`Day2/README.md`](Day2/README.md) for a full explanation of the Day 2 exercise.
 
 ---
@@ -192,7 +227,8 @@ cd Day2 && python loc_start.py     # interval localization
 | Digital Twins: Fundamentals | ☐ | ☐ | Pending |
 | Oceanic Robotics | ☐ | n/a | Pending |
 | Digital Twins: Practice | ☐ | ☐ | Pending |
-| The Race: Final Challenge | ☐ | ☐ | Pending |
+| Team Project: DD-Boat 11 (NavySeals) | ☑ | ☑ | In progress |
+| The Race: Final Challenge | ☐ | ☑ | In progress |
 
 ---
 
