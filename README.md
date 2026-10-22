@@ -89,7 +89,7 @@ By the end of the course, I aim to be able to:
 | 9 | Digital Twins: Fundamentals | Antoine Morvan | [`Day4`](Day4) |
 | 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
 | 11 | Digital Twins: Practice | Antoine Morvan | [`Day4`](Day4) |
-| 12 | **The Race**: Final Challenge | Luc Jaulin | [`Day3/NavySeals`](Day3/NavySeals) |
+| 12 | **The Race**: Final Challenge | Luc Jaulin | [`Day4/NavySeals`](Day4/NavySeals) |
 
 <details>
 <summary><b>Key questions addressed by each module</b></summary>
@@ -136,9 +136,16 @@ On **Day 3 (Wednesday)** the teams were formed and the project began. I joined t
 - All checks of the `best_ddboat` handout passed
 - First controllers: heading hold, GPS waypoints, return-to-home ("no-kayaking"), keyboard teleoperation and the regatta state machine
 
-**Next steps**: on-water trials of heading hold and return-to-home, then the line follower between buoys.
+**Done on Day 4**
 
-The boat runs **Python 3.5.3**, so no f-strings. Full details: [`REGATTA_MISSION_PLAN.md`](Day3/NavySeals/REGATTA_MISSION_PLAN.md) (competition strategy), [`COMPASS_CALIBRATION_REPORT.md`](Day3/NavySeals/COMPASS_CALIBRATION_REPORT.md).
+- **Ground station GUI** on the laptop: one click switches between keyboard RC and autonomous mode, with a STOP button, live instruments (compass, motor bars, score) and the boat's terminal
+- Regatta controller rewritten: gates read from a JSON file, real ±1 scoring of gate segment crossings, safety checks before the start and a GPS dropout watchdog
+- Latched keyboard teleop and a more robust waypoint follower
+- Digital twin exercises (straight line, turn direction, pivot, square)
+
+Details: [`Day4/NavySeals/README.md`](Day4/NavySeals/README.md).
+
+The boat runs **Python 3.5.3**, so no f-strings. Full details: [`REGATTA_MISSION_PLAN.md`](Day4/NavySeals/REGATTA_MISSION_PLAN.md) (competition strategy), [`COMPASS_CALIBRATION_REPORT.md`](Day3/NavySeals/COMPASS_CALIBRATION_REPORT.md).
 
 ---
 
@@ -176,7 +183,16 @@ The boat runs **Python 3.5.3**, so no f-strings. Full details: [`REGATTA_MISSION
 └── Day4/                               # Thursday: digital twins
     ├── README.md                       # write-up of the exercise
     ├── sim_digital_twin.py             # kinematic DD-Boat model, open-loop thrust tests
-    └── boat_observer.py                # UDP link to the boat + state observer on its measurements
+    ├── boat_observer.py                # UDP link to the boat + state observer on its measurements
+    └── NavySeals/                      # team project: ground station and regatta (Day 3 scripts, updated)
+        ├── README.md                   # what changed since Day 3
+        ├── boat_gui.py                 # laptop GUI: RC / autonomous switch, STOP, live instruments
+        ├── regatta_loop.py             # regatta controller, ±1 scoring of gate crossings
+        ├── regatta_gates.example.json  # gate file template
+        ├── rc_teleop.py                # latched keyboard teleoperation
+        ├── waypoint_mission.py         # robust GPS waypoint navigation
+        ├── simu_page13.py              # digital twin exercises
+        └── …                           # other boat scripts, same as Day 3
 ```
 
 Folders for the following days will be added as the week goes on.
@@ -209,11 +225,12 @@ Scripts import their neighbours by name, so run them from inside their folder:
 cd Day1 && python simulator.py     # DD-Boat waypoint following
 cd Day2 && python loc_start.py     # interval localization
 cd Day4 && python sim_digital_twin.py   # digital twin simulation
+cd Day4/NavySeals && python boat_gui.py # ground station GUI (needs the boat on the network)
 ```
 
-The `Day3/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they need the course drivers (`arduino_driver_v2`, `gps_driver_v2`, `imu9_driver_v2`). Each script's docstring gives its usage.
+The `Day3/NavySeals` and `Day4/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they need the course drivers (`arduino_driver_v2`, `gps_driver_v2`, `imu9_driver_v2`). The exception is `boat_gui.py`, which runs on the laptop and starts them for you. Each script's docstring gives its usage.
 
-`client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). Each day folder has its own README explaining the exercise: [Day1](Day1/README.md), [Day2](Day2/README.md), [Day3](Day3/NavySeals/README.md), [Day4](Day4/README.md).
+`client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). Each day folder has its own README explaining the exercise: [Day1](Day1/README.md), [Day2](Day2/README.md), [Day3](Day3/NavySeals/README.md), [Day4](Day4/README.md) and [Day4/NavySeals](Day4/NavySeals/README.md).
 
 ---
 

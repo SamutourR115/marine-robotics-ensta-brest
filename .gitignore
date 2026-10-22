@@ -46,5 +46,5 @@ share/python-wheels/
 *.manifest
 *.spec
 # Notes contenant les identifiants du bateau
-Day3/NavySeals/PROJECT_RECORD.md
-Day3/NavySeals/SESSION_HANDOVER.md
+PROJECT_RECORD.md
+SESSION_HANDOVER.md
