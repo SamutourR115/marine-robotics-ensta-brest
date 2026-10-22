@@ -87,7 +87,7 @@ By the end of the course, I aim to be able to:
 | 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | [`Day3`](Day3) |
 | 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | [`Day3`](Day3) |
 | 9 | Digital Twins: Fundamentals | Antoine Morvan | [`Day4`](Day4) |
-| 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
+| 10 | Oceanic Robotics | Jean-Philippe Brunet | [`Day4`](Day4) |
 | 11 | Digital Twins: Practice | Antoine Morvan | [`Day4`](Day4) |
 | 12 | **The Race**: Final Challenge | Luc Jaulin | [`Day4/NavySeals`](Day4/NavySeals) |
 
@@ -238,17 +238,17 @@ The `Day3/NavySeals` and `Day4/NavySeals` scripts run **on the boat** over SSH, 
 
 | Module | Notes | Code | Status |
 |---|:---:|:---:|:---:|
-| Introduction to Mobile Marine Robotics | ☐ | n/a | Pending |
-| Autonomous Boats | ☐ | ☑ | In progress |
-| Heading Control of the Virtual DD-Boat | ☐ | ☑ | In progress |
+| Introduction to Mobile Marine Robotics | ☑ | ☑ | Done |
+| Autonomous Boats | ☑ | ☑ | In progress |
+| Heading Control of the Virtual DD-Boat | ☑ | ☑ | Done |
 | Interval Analysis for Localization | ☑ | ☑ | Done |
-| Reachability | ☐ | ☐ | Pending |
-| Robot Showcase (AICE) | ☐ | n/a | Pending |
-| Reinforcement Learning (Part 1) | ☐ | ☐ | Pending |
-| Reinforcement Learning (Part 2) | ☐ | ☐ | Pending |
-| Digital Twins: Fundamentals | ☐ | ☑ | In progress |
-| Oceanic Robotics | ☐ | n/a | Pending |
-| Digital Twins: Practice | ☐ | ☑ | In progress |
+| Reachability | ☑ | ☑ | Done |
+| Robot Showcase (AICE) | ☑ | n/a | Done |
+| Reinforcement Learning (Part 1) | ☑ | ☑ | Done |
+| Reinforcement Learning (Part 2) | ☑ | ☑ | Done |
+| Digital Twins: Fundamentals | ☑ | ☑ | Done |
+| Oceanic Robotics | ☑ | ☑ | Done |
+| Digital Twins: Practice | ☑ | ☑ | Done |
 | Team Project: DD-Boat 11 (NavySeals) | ☑ | ☑ | In progress |
 | The Race: Final Challenge | ☐ | ☑ | In progress |
 
