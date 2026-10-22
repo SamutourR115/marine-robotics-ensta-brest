@@ -86,9 +86,9 @@ By the end of the course, I aim to be able to:
 | 6 | Robot Showcase | AICE | [`Day2`](Day2) |
 | 7 | Reinforcement Learning for Autonomous Boats (Part 1) | Romain Bornier | [`Day3`](Day3) |
 | 8 | Reinforcement Learning for Autonomous Boats (Part 2) | Romain Bornier | [`Day3`](Day3) |
-| 9 | Digital Twins: Fundamentals | Antoine Morvan | Coming soon |
+| 9 | Digital Twins: Fundamentals | Antoine Morvan | [`Day4`](Day4) |
 | 10 | Oceanic Robotics | Jean-Philippe Brunet | Coming soon |
-| 11 | Digital Twins: Practice | Antoine Morvan | Coming soon |
+| 11 | Digital Twins: Practice | Antoine Morvan | [`Day4`](Day4) |
 | 12 | **The Race**: Final Challenge | Luc Jaulin | [`Day3/NavySeals`](Day3/NavySeals) |
 
 <details>
@@ -138,7 +138,7 @@ On **Day 3 (Wednesday)** the teams were formed and the project began. I joined t
 
 **Next steps**: on-water trials of heading hold and return-to-home, then the line follower between buoys.
 
-The boat runs **Python 3.5.3**, so no f-strings. Full details: [`PROJECT_RECORD.md`](Day3/NavySeals/PROJECT_RECORD.md) (runbook), [`REGATTA_MISSION_PLAN.md`](Day3/NavySeals/REGATTA_MISSION_PLAN.md) (competition strategy), [`COMPASS_CALIBRATION_REPORT.md`](Day3/NavySeals/COMPASS_CALIBRATION_REPORT.md).
+The boat runs **Python 3.5.3**, so no f-strings. Full details: [`REGATTA_MISSION_PLAN.md`](Day3/NavySeals/REGATTA_MISSION_PLAN.md) (competition strategy), [`COMPASS_CALIBRATION_REPORT.md`](Day3/NavySeals/COMPASS_CALIBRATION_REPORT.md).
 
 ---
 
@@ -150,29 +150,33 @@ The boat runs **Python 3.5.3**, so no f-strings. Full details: [`PROJECT_RECORD.
 ├── assets/
 │   └── ImgBest26.png                   # README banner
 ├── Day1/                               # Monday: autonomous boats & DD-Boat heading control
+│   ├── README.md                       # write-up of the exercise
 │   ├── ddboatlib.py                    # plotting helpers (init_figure, draw_ddboat, sawtooth…)
 │   ├── simulator.py                    # DD-Boat model + heading controller, waypoint following
-│   ├── sim2.py                         # variant of the simulator
 │   └── client_pour_virtual_regatta.py  # UDP client driving the boat in the Unity virtual regatta
 ├── Day2/                               # Tuesday: interval analysis for localization
 │   ├── README.md                       # detailed write-up of the exercise
 │   ├── myinterval.py                   # minimal interval arithmetic
 │   ├── mycontractor.py                 # elementary contractors
 │   └── loc_start.py                    # localization of a group of 8 robots
-└── Day3/NavySeals/                     # Wednesday: team project on the real DD-Boat 11
-    ├── PROJECT_RECORD.md               # full runbook and log of the project
-    ├── REGATTA_MISSION_PLAN.md         # strategy for the Friday regatta
-    ├── stop.py                         # emergency stop (both thrusters to 0)
-    ├── boat11_smoke_test.py            # IMU / GPS / Arduino check
-    ├── motor_test.py                   # 2 s in-place turn
-    ├── calib.py                        # compass calibration + live heading
-    ├── gps.py                          # NMEA parsing, UTM projection, KML log
-    ├── battery*.py                     # battery voltage and state of charge
-    ├── heading_hold.py                 # sawtooth proportional heading control
-    ├── waypoint_mission.py             # GPS waypoint navigation
-    ├── control.py                      # boomerang and GPS return-to-home
-    ├── rc_teleop.py                    # keyboard teleoperation over SSH
-    └── regatta_loop.py                 # gate A ↔ B regatta controller
+├── Day3/NavySeals/                     # Wednesday: team project on the real DD-Boat 11
+│   ├── README.md                       # write-up of the project
+│   ├── REGATTA_MISSION_PLAN.md         # strategy for the Friday regatta
+│   ├── stop.py                         # emergency stop (both thrusters to 0)
+│   ├── boat11_smoke_test.py            # IMU / GPS / Arduino check
+│   ├── motor_test.py                   # 2 s in-place turn
+│   ├── calib.py                        # compass calibration + live heading
+│   ├── gps.py                          # NMEA parsing, UTM projection, KML log
+│   ├── battery*.py                     # battery voltage and state of charge
+│   ├── heading_hold.py                 # sawtooth proportional heading control
+│   ├── waypoint_mission.py             # GPS waypoint navigation
+│   ├── control.py                      # boomerang and GPS return-to-home
+│   ├── rc_teleop.py                    # keyboard teleoperation over SSH
+│   └── regatta_loop.py                 # gate A ↔ B regatta controller
+└── Day4/                               # Thursday: digital twins
+    ├── README.md                       # write-up of the exercise
+    ├── sim_digital_twin.py             # kinematic DD-Boat model, open-loop thrust tests
+    └── boat_observer.py                # UDP link to the boat + state observer on its measurements
 ```
 
 Folders for the following days will be added as the week goes on.
@@ -204,11 +208,12 @@ Scripts import their neighbours by name, so run them from inside their folder:
 ```bash
 cd Day1 && python simulator.py     # DD-Boat waypoint following
 cd Day2 && python loc_start.py     # interval localization
+cd Day4 && python sim_digital_twin.py   # digital twin simulation
 ```
 
-The `Day3/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they need the course drivers (`arduino_driver_v2`, `gps_driver_v2`, `imu9_driver_v2`). See [`PROJECT_RECORD.md`](Day3/NavySeals/PROJECT_RECORD.md) for the commands.
+The `Day3/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they need the course drivers (`arduino_driver_v2`, `gps_driver_v2`, `imu9_driver_v2`). Each script's docstring gives its usage.
 
-`client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). See [`Day2/README.md`](Day2/README.md) for a full explanation of the Day 2 exercise.
+`client_pour_virtual_regatta.py` needs the course's Unity simulator on the network (set `UNITY_IP` first). Each day folder has its own README explaining the exercise: [Day1](Day1/README.md), [Day2](Day2/README.md), [Day3](Day3/NavySeals/README.md), [Day4](Day4/README.md).
 
 ---
 
@@ -224,9 +229,9 @@ The `Day3/NavySeals` scripts run **on the boat** over SSH, not on a laptop: they
 | Robot Showcase (AICE) | ☐ | n/a | Pending |
 | Reinforcement Learning (Part 1) | ☐ | ☐ | Pending |
 | Reinforcement Learning (Part 2) | ☐ | ☐ | Pending |
-| Digital Twins: Fundamentals | ☐ | ☐ | Pending |
+| Digital Twins: Fundamentals | ☐ | ☑ | In progress |
 | Oceanic Robotics | ☐ | n/a | Pending |
-| Digital Twins: Practice | ☐ | ☐ | Pending |
+| Digital Twins: Practice | ☐ | ☑ | In progress |
 | Team Project: DD-Boat 11 (NavySeals) | ☑ | ☑ | In progress |
 | The Race: Final Challenge | ☐ | ☑ | In progress |
 
